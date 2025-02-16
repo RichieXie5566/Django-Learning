@@ -90,7 +90,7 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD':os.environ['DB_PASSWORD_YO'],
         'HOST':'mainline.proxy.rlwy.net',
-        'PORT':'5432',
+        'PORT':'14361',
 
 
     }
