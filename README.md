@@ -1,2 +1,2 @@
-# My Ecom Site retry
+# My Django-Ecom-App retry
  The old one is dead...
