@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!--開頭-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">付款方式</h1>
+                <p class="lead fw-normal text-white-50 mb-0">可以刷卡ㄛ</p>
+            </div>
+        </div>
+    </header>
+    <br/><br/>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                您的訂單
+            </div>
+            <div class="card-body">
+                {% for product in cart_products %}
+
+                    {{ product.name }} &nbsp;
+                                
+                        {% if product.is_sale %}
+                            ${{ product.sale_price }}      
+                        {% else %}
+                            ${{ product.price}}
+                        {% endif %}
+                    <br/>
+                    <small>數量:
+                    {% for key, value in quantities.items %}
+                        {% if key == product.id|slugify %}
+                            {{ value }}
+                        {% endif %}
+                    {% endfor %}</small>
+                    <br/><br/>
+                {% endfor %}
+                
+                合計：${{ totals }}<br/><br/>
+                
+                <a href="{% url 'cart_summary' %}"><button type="button" class=" btn btn-sm btn-secondary">更新購物車</button></a>
+            </div>
+        </div>
+        <br><br>
+        <div class="card">
+            <div class="card-header">
+              宅配資訊
+            </div>
+            <div class="card-body">
+                姓名:&nbsp;{{ shipping_info.shipping_full_name }}<br/>
+                Email:&nbsp;{{ shipping_info.shipping_email }}<br/>
+                電話:&nbsp;{{ shipping_info.shipping_phone }}<br/>
+                地址一:&nbsp;{{ shipping_info.shipping_address1 }}<br/>
+                地址二:&nbsp;{{ shipping_info.shipping_address2 }}<br/>
+                城市:&nbsp;{{ shipping_info.shipping_city }}<br/>
+                郵遞區號:&nbsp;{{ shipping_info.shipping_zipcode }}<br/>
+                國家:&nbsp;{{ shipping_info.shipping_country }}<br/>
+            </div>
+        </div>
+        <br/>
+        <div class="card">
+            <div class="card-header">
+              付款資訊
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'process_order' %}">
+                    {% csrf_token %}
+                    {{ billing_form.as_p }}  <!-- 這裡應該顯示表單 -->
+                    <button type="submit" class="btn btn-primary">提交付款</button>
+                </form>
+            </div> 
+        </div>
+    </div>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+{% endblock %}

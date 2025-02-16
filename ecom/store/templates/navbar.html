@@ -1,0 +1,84 @@
+
+
+<!--導覽列-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand " style="font-family: 'Times New Roman', Times, serif" href="{% url 'home' %}">Good Shop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">    
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">關於我們</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">全部商品</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'category' 'CPU' %}">中央處理器</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'GPU' %}">顯示卡</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'SSD' %}">固態硬碟</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'RAM' %}">記憶體</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Apple Phone' %}">蘋果手機</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Android Phone' %}">安卓手機</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'search' %}">搜尋</a></li>
+            </ul>
+            <form class="d-flex">
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                發貨
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'not_shipped_dash' %}" class="dropdown-item">未出貨</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="{% url 'shipped_dash' %}" class="dropdown-item">已出貨</a></li>
+                            </ul>
+                            &nbsp;
+                            <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                帳號
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'update_user' %}" class="dropdown-item">帳號設定</a></li>
+                                <li><a href="{% url 'update_info' %}" class="dropdown-item">結帳設定</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="{% url 'update_password' %}" class="dropdown-item">更改密碼</a></li>
+                            </ul>
+                        </div>
+                        &nbsp;
+                        <a href="{% url 'cart_summary' %}" class="btn btn-outline-success"> 
+                                <i class="bi-cart-fill me-1"></i>
+                                購物車
+                                <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
+                        </a>
+                        &nbsp;
+                        <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-danger">登出</button></a>
+                    {% else %}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            帳號
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'update_user' %}" class="dropdown-item">帳號設定</a></li>
+                                <li><a href="{% url 'update_info' %}" class="dropdown-item">結帳設定</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="{% url 'update_password' %}" class="dropdown-item">更改密碼</a></li>
+                            </ul>
+                        </div>
+                        &nbsp;
+                        <a href="{% url 'cart_summary' %}" class="btn btn-outline-success"> 
+                                <i class="bi-cart-fill me-1"></i>
+                                購物車
+                                <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
+                        </a>
+                        &nbsp;
+                        <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-danger">登出</button></a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary btn-sm">登入</button></a>
+                    &nbsp;
+                    <a  href="{% url 'register' %}"><button type="button" class="btn btn-outline-secondary btn-sm">註冊</button></a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</nav>

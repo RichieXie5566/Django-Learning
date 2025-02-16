@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!--開頭-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">購物車</h1>
+                <p class="lead fw-normal text-white-50 mb-0">準備好就結帳吧</p>
+            </div>
+        </div>
+    </header>
+    <br/><br/><br/><br/><br/>
+    <div class="container">
+        {% if cart_products %}
+            <div align="right">
+                <strong>
+                    <h2 style="color: green;">合計：${{ totals }}</h2>
+                </strong>
+                <a href="{% url 'checkout' %}"><button type="button" class="btn btn-warning text-dark">結帳</button></a>
+            </div>
+            
+            <br/>
+            {% for product in cart_products %}
+                <div class="card mb-3">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="..."/>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <center>
+                                <br/>
+                                <h5 class="card-title">{{ product.name }}</h5><br/>
+                                
+                                {% if product.is_sale %}
+                                    <h4 style="color: red;">${{ product.sale_price }}</h4>
+                                    
+                                {% else %}
+                                    <h4>${{ product.price}}</h4>
+                                {% endif %}
+                                <br/>
+                                <div class="row justify-content-center">
+                                    <h4>數量:</h4>
+                                    <div class="col-md-2">
+                                        <select class="form-select form-select-sm" id="select{{ product.id }}">
+                                            
+                                            {% for key, value in quantities.items %}
+                                                {% if key == product.id|slugify %}
+                                                    <option selected>{{ value }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="3">4</option>
+                                            <option value="3">5</option>
+                                            <option value="3">6</option>
+                                            <option value="3">7</option>
+                                            <option value="3">8</option>
+                                            <option value="3">9</option>
+                                            <option value="3">10</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <br/><br/>
+                                <button type="button" data-index="{{ product.id }}" class="btn btn-secondary update-cart">更新數量</button>
+                                <button type="button" data-index="{{ product.id }}" class="btn btn-danger delete-product">移除</button>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <br/><br/><br/><br/>
+            <center><h1>空的購物車</h1></center>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        {% endif %}
+    </div>
+    <br/><br/><br/><br/>
+
+
+    <script>
+        // 更新購物車
+        $(document).on('click', '.update-cart', function(e){
+        e.preventDefault();
+        // 獲取產品ID
+        var productid = $(this).data('index');
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_update' %}", 
+            data: {
+            product_id: $(this).data('index'),
+            product_qty: $('#select' + productid + ' option:selected').text(), // 取得數量
+            csrfmiddlewaretoken: '{{ csrf_token }}', // 每次使用表單都需要csrf
+            action: 'post'
+            },
+    
+            success: function(json){
+                location.reload();
+            },
+    
+            error: function(xhr, errmg, err){
+    
+            }
+            
+        }); // 不用刷新頁面就能把資料傳到伺服器端
+    
+    
+    
+        })
+    </script>
+
+    <script>
+        // 移除購物車
+        $(document).on('click', '.delete-product', function(e){
+        e.preventDefault();
+        
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_delete' %}", 
+            data: {
+            product_id: $(this).data('index'),
+            csrfmiddlewaretoken: '{{ csrf_token }}', // 每次使用表單都需要csrf
+            action: 'post'
+            },
+
+            success: function(json){
+                location.reload();
+            },
+
+            error: function(xhr, errmg, err){
+
+            }
+            
+        }); // 不用刷新頁面就能把資料傳到伺服器端
+
+
+
+        })
+    </script>
+{% endblock %}

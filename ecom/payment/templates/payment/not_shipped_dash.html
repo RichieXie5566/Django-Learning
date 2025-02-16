@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">未出貨</h1>
+            <p class="lead fw-normal text-white-50 mb-0">送貨員還在等他很火</p>
+        </div>
+    </div>
+</header>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+{% if orders|length == 0 %}
+<div class="container">
+    <div class="text-center">
+        <strong><h1 style="color: red;">所有訂單皆已出貨</h1></strong>
+    </div>
+    <br/>
+    <div class="text-center">
+        <img src="{% static 'wayne75525-bd.gif' %}" class="rounded img-fluid">
+    </div>
+</div>
+{% else %}
+    <div class="container">
+        <div class="row text-center">
+            <table class="table table-striped  table-hover table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">定單</th>
+                    <th scope="col">價錢</th>
+                    <th scope="col">帳號</th>
+                    <th scope="col">電話</th>
+                    <th scope="col">下單日期</th>
+                    <th scope="col">狀態</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in orders %}
+                <tr>
+                    <td><a href="{% url 'orders' item.id %}">{{ item.id }}</a></td>
+                    <td>{{ item.amount_pay }}</td>
+                    <td>{{ item.user }}</td>
+                    <td>{{ item.phone }}</td>
+                    <td>{{ item.date_ordered }}</td>
+                    <td>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="shipping_status" value="true">
+                            <input type="hidden" name="num" value="{{ item.id }}">
+                            <button type="submit" class="btn btn-success">設為已出貨</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+{% endif %}
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+
+{% endblock %}

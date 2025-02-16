@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">登入</h1>
+            <p class="lead fw-normal text-white-50 mb-0">開始購物...</p>
+        </div>
+    </div>
+</header>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+<div class="container">
+    <div class="row">
+        <center>
+        <div class="col-8">
+          <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <input type="text" class="form-control" name="username" placeholder="輸入帳號">
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" name="password" placeholder="輸入密碼">
+            </div>
+            <br/>
+          <button type="submit" class="btn btn-primary">登入</button>
+        </form>
+        </div>
+    </div> 
+</div>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+
+{% endblock %}

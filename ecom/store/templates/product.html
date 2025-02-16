@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+<div class="container">
+    <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <center>
+            <div class="card-body">
+              <br/>
+              <h3 class="card-title">{{ product.name }}</h3>
+              <br/>
+              <p class="card-text">{{ product.description|safe }}</p>
+              <br/>
+                {% if product.is_sale %}
+                    <!--優惠星號-->
+                    <div class="d-flex justify-content-center small text-warning mb-2">
+                        <div class="bi-star-fill"></div>
+                        &nbsp;&nbsp;<h4>優惠中!</h4>&nbsp;&nbsp;
+                        <div class="bi-star-fill"></div>
+                    </div>
+                    
+                    <strike>
+                        <h4>${{ product.price }}</h4>
+                    </strike>
+                    <h4 style="color: red;">${{ product.sale_price }}</h4>
+                    <br/>
+                {% else %}
+                    <h4>${{ product.price }}</h4>
+                {% endif %}
+                <br/>
+                <div class="row justify-content-center">
+                  <div class="col-md-2">
+                    <select class="form-select form-select-sm" id="qty-cart">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="3">4</option>
+                      <option value="3">5</option>
+                      <option value="3">6</option>
+                      <option value="3">7</option>
+                      <option value="3">8</option>
+                      <option value="3">9</option>
+                      <option value="3">10</option>
+                    </select>
+                  </div>
+                </div>
+                <br/>
+                {% if user.is_authenticated %}
+                  <button type="button" value="{{ product.id }}" class="btn btn-success" id="add-cart">加入購物車</button>
+                {% else %}
+                  <p>訪客請先登入或註冊</p>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+<!-- 購物車使用的JQuery-->
+<script>
+  // 檢查按鈕是否被按下去
+  $(document).on('click', '#add-cart', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'cart_add' %}", // 用雙引號避免django跟js產生衝突
+      data: {
+        product_id: $('#add-cart').val(), // 使用value屬性獲取產品id並用add-cart呼叫
+        product_qty: $('#qty-cart option:selected').text(), // 取得數量
+        csrfmiddlewaretoken: '{{ csrf_token }}', // 每次使用表單都需要csrf
+        action: 'post'
+      },
+
+      success: function(json){
+        // console.log(json) // 商品加入購物車成功時透過json回傳console.log
+        document.getElementById("cart_quantity").
+          textContent = json.qty
+          location.reload();
+      },
+
+      error: function(xhr, errmg, err){
+
+      }
+      
+    }); // 不用刷新頁面就能把資料傳到伺服器端
+
+
+
+  })
+</script>
+
+{% endblock %}

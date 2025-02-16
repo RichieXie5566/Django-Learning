@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">更改訂單</h1>
+            <p class="lead fw-normal text-white-50 mb-0">小提醒:棄標是不好的行為</p>
+        </div>
+    </div>
+</header>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+<div class="container">
+    <div class="row">
+        <div class="card text-center">
+            <div class="card-header">
+              訂單{{ order.id }} - ${{ order.amount_pay }}
+            </div>
+            <br/>
+            <div class="card-body">
+                電話:&nbsp; {{ order.phone }}<br/><br/>
+                {% if order.us_shipped%}
+                    出貨日期:&nbsp; {{ order.date_shipped }}<br/><br/>
+                {% else %}
+                    下單日期:&nbsp; {{ order.date_ordered }}<br/><br/>
+                {% endif %}
+                買家姓名:&nbsp; {{ order.full_name }}<br/><br/>
+                地址:<pre>{{ order.shipping_address }}</pre><br/>
+                商品:&nbsp;  
+                {% for item in items %}
+                    {{ item.product }}&nbsp;&nbsp;{{ item.quantity }}件&nbsp;&nbsp;${{ item.price }}<br/>
+                {% endfor%}
+                <br/>
+                {% if not order.shipped %}  
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="shipping_status" value="true">
+                        <button type="submit" class="btn btn-success">設為已出貨</button>
+                    </form>
+                {% else %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="shipping_status" value="false">
+                        <button type="submit" class="btn btn-danger">設為未出貨</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div> 
+    </div>
+</div>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+
+{% endblock %}
