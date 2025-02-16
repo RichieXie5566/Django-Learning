@@ -132,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS =[
     os.path.join(BASE_DIR,"static"), # 使用絕對路徑確保Django總是能正確找到static/資料夾
 ]
@@ -141,7 +141,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 設定媒體檔案的存放位置，Django會將上傳的文件儲存在這個目錄中
-MEDIA_URL = '/media/' # 設定媒體檔案的URL前綴，這是用來在模板或API中引用媒體文件的路徑
+MEDIA_URL = 'media/' # 設定媒體檔案的URL前綴，這是用來在模板或API中引用媒體文件的路徑
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
