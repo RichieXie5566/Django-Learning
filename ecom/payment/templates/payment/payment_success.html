@@ -1,1 +1,25 @@
-<h1>Hello Fatso</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <!--開頭-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">付款完成!</h1>
+                <p class="lead fw-normal text-white-50 mb-0">訂單處理中...</p>
+            </div>
+        </div>
+    </header>
+    <br/><br/>
+    <div class="container">
+        <div class="text-center">
+            <strong><h1 style="color: red;">我們會盡快處理您的訂單</h1></strong>
+        </div>
+    <br/>
+        <div class="text-center">
+            <img src="{% static 'wayne75525-bd.gif' %}" class="rounded img-fluid">
+        </div>
+    </div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+{% endblock %}
