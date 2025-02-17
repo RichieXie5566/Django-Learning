@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'cart',
     'payment',
     'whitenoise.runserver_nostatic',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -149,5 +150,7 @@ MEDIA_URL = 'media/' # 設定媒體檔案的URL前綴，這是用來在模板或
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
+# PayPal 設定
+# PayPal沙盒
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'businesstest@codemy.com'

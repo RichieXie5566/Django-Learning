@@ -7,8 +7,17 @@ from payment.models import ShippingAddress, Order, OrderItem
 from store.models import Product, Profile
 from django.utils import timezone
 
+# PayPal要用的
+from django.urls import reverse
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+import uuid
+
 def payment_success(request):
     return render(request, 'payment/payment_success.html', {})
+
+def payment_failed(request):
+    return render(request, 'payment/payment_failed.html', {})
 
 def checkout(request):
     cart = Cart(request) # 從 session中獲取購物車
@@ -35,10 +44,27 @@ def billing_info(request):
         # 建立包含訂單的session
         my_shipping = request.POST 
         request.session['my_shipping'] = my_shipping
+
+        # 獲取主機
+        host = request.get_host()
+        # 建立PayPal表單
+        paypal_dict = {
+            'business':settings.PAYPAL_RECEIVER_EMAIL,
+            'amount_pay':totals,
+            'item_name':'3C Product Order',
+            'no_shipping':'2',
+            'invoice':str(uuid.uuid4()),
+            'currency_code':'TWD',
+            'notify_url':'https://{}{}'.format(host, reverse("paypal-ipn")),
+            'return_url':'https://{}{}'.format(host, reverse("payment_success")),
+            'cancel_return':'https://{}{}'.format(host, reverse("payment_failed")),
+        }
+
+        paypal_form = PayPalPaymentsForm(initial=paypal_dict)
     
         if request.user.is_authenticated: # 確認使用者有無登入
             billing_form = PaymentForm()
-            return render(request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
+            return render(request, "payment/billing_info.html", {"paypal_form":paypal_form, "cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
         else:
             messages.error(request,'請先登入') # 未登入，顯示錯誤訊息
             return redirect("login")  # 重導向到登入頁面
@@ -161,3 +187,5 @@ def orders(request, pk):
     else:
         messages.error(request,'你沒有權限瀏覽此頁面')
         return redirect("home")
+
+# 引入PayPal
