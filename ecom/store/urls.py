@@ -13,4 +13,5 @@ urlpatterns = [
     path('update_password/',views.update_password, name = 'update_password'),
     path('product/<int:pk>', views.product, name='product'),
     path('category/<str:foo>',views.category, name='category'),
+    path('upload-media/', views.upload_media, name='upload_media'),
 ]

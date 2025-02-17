@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # 讀取環境變數
@@ -147,3 +152,12 @@ MEDIA_URL = 'media/' # 設定媒體檔案的URL前綴，這是用來在模板或
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+cloudinary.config( 
+  	cloud_name = "djrfa2nyc",
+  	api_key = "337522615688268",
+  	api_secret = "PhPx46S8wFL_AftIkYTeJ8genzs"
+)
+
+

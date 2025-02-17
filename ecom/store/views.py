@@ -11,6 +11,7 @@ from django import forms
 import json
 from django.db.models import Q
 from cart.cart import Cart #cart資料夾裡的cart.py裡面的Cart
+from django.shortcuts import render
 
 def home(request):
     products = Product.objects.all()
@@ -174,3 +175,7 @@ def search(request):
             return render(request, 'search.html', {'searched':searched})
     else:
         return render(request, 'search.html', {})
+    
+
+def upload_media(request):
+    return render(request, 'media_app/upload_media.html')
