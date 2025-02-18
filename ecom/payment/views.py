@@ -14,6 +14,16 @@ from django.conf import settings
 import uuid
 
 def payment_success(request):
+    cart = Cart(request) # 從 session中獲取購物車
+    cart_products = cart.get_prods # 取得購物車內的所有商品
+    quantities = cart.get_quants # 取得購物車內各商品的數量
+    totals = cart.cart_total()
+
+    # 清空網頁裡的購物車
+    for key in list(request.session.keys()):
+        if key == "session_key":
+            del request.session[key]
+
     return render(request, 'payment/payment_success.html', {})
 
 def payment_failed(request):
@@ -45,15 +55,27 @@ def billing_info(request):
         my_shipping = request.POST 
         request.session['my_shipping'] = my_shipping
 
+        # 收集訂單資訊
+        full_name = my_shipping['shipping_full_name']
+        email = my_shipping['shipping_email']
+        phone = my_shipping['shipping_phone']
+
+        # 從 session_info 建立 Shippin_Address
+        shipping_address = f"{my_shipping['shipping_address1']}\n{my_shipping['shipping_address2']}\n{my_shipping['shipping_city']}\n{my_shipping['shipping_zipcode']}\n{my_shipping['shipping_country']}"
+        amount_pay = totals
+
         # 獲取主機
         host = request.get_host()
+        # 生成發票號碼
+        my_Invoice = str(uuid.uuid4())
+
         # 建立PayPal表單
         paypal_dict = {
             'business':settings.PAYPAL_RECEIVER_EMAIL,
-            'amount_pay':totals,
+            'amount':totals,
             'item_name':'3C Product Order',
             'no_shipping':'2',
-            'invoice':str(uuid.uuid4()),
+            'invoice':my_Invoice,
             'currency_code':'TWD',
             'notify_url':'https://{}{}'.format(host, reverse("paypal-ipn")),
             'return_url':'https://{}{}'.format(host, reverse("payment_success")),
@@ -63,13 +85,44 @@ def billing_info(request):
         paypal_form = PayPalPaymentsForm(initial=paypal_dict)
     
         if request.user.is_authenticated: # 確認使用者有無登入
+            # 取得付款資訊
             billing_form = PaymentForm()
+
+            # 使用者登入
+            user = request.user
+            create_order = Order(user=user, full_name=full_name, email=email, phone=phone, shipping_address=shipping_address, amount_pay=amount_pay, invoice=my_Invoice)
+            create_order.save()
+            
+            # 添加商品在訂單裡
+            order_id = create_order.pk # 取得訂單id
+            
+            for product in cart_products(): # 取得商品id
+                product_id = product.id 
+                
+                if product.is_sale: # 取得商品價錢
+                    price = product.sale_price
+                else:
+                    price = product.price
+
+                # 取得數量
+                for key, value in quantities().items():
+                    if int(key) == product.id:
+                        create_order_item = OrderItem(order_id=order_id, product_id=product_id, user=user, quantity=value, price=price)
+                        create_order_item.save()
+            
+            
+            # 刪除資料庫裡的oldcart
+            current_user = Profile.objects.filter(user__id=request.user.id)
+            current_user.update(oldcart="")
+
             return render(request, "payment/billing_info.html", {"paypal_form":paypal_form, "cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
+    
         else:
             messages.error(request,'請先登入') # 未登入，顯示錯誤訊息
             return redirect("login")  # 重導向到登入頁面
     else:
-        return redirect("cart") # 讓沒有 POST 請求的使用者回到購物車
+        messages.error(request,'存取遭拒')
+        return redirect("home")
         
 def process_order(request):
     if request.POST:
