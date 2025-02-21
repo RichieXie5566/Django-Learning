@@ -2,13 +2,14 @@
 
 Website link:https://django-ecom-app-production-d8d0.up.railway.app/
 
-I am working on being a back-end engineer, so I start learning Python and using django frame to build a E-commerce website for study purpose.
+I am working towards becoming a back-end engineer, so I started learning Python and using the Django framework to build an E-commerce website for study purpose.
 
-I've tried building this website multiple times, but some of them look bad so I deleted their commit, this website won't make any money, all of the products are data and still I don't have the operating rights to run these products as well as I do not actually own them.
+I've attempted to building this website multiple times, but some versions didn't turn out well, so I deleted their commits. This website is not intended for commercial use, all products are dummy data and still I don't have rights to operate or own them.
 
-PayPal paying function is working, please use sandbox account.
+The PayPal payment function is working, sandbox account testing only.
 
-Credit Cards paying isn't working, click the button will create order at the back-end of PostgreSQL on Railway or localhost's PostgreSQL.
+Credit Cards payments are not yet functional. 
+Click the button will create order on Railway or local PostgreSQL instance.
 
 ## 1.Element and tree
 ### Using Python3.12 Django PostgreSQL Railway
