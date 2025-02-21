@@ -8,9 +8,10 @@ I've tried building this website multiple times, but some of them look bad so I 
 
 PayPal paying function is working, please use sandbox account.
 
-Credit Cards paying isn't working, click the button will create order at the back-end of PostgreSQL on railway or localhost's PostgreSQL.
+Credit Cards paying isn't working, click the button will create order at the back-end of PostgreSQL on Railway or localhost's PostgreSQL.
 
-
+## 1.Element and tree
+### Using Python3.12 Django PostgreSQL Railway
 ```
 Ecom-retry
 ├─ ecom                                      
@@ -111,3 +112,15 @@ Ecom-retry
 └─ README.md
 
 ```
+
+## 2.User
+### Register -->Login -->Update_user, Update_password or Update_info.
+
+## 3.Product
+### Searching product, Product pages, Add to cart.
+
+## 4.Checkout
+### Check -->Billing_info -->Process_order -->Payment_success or Payment_failed
+
+## 5.Admin Session
+### Shipped_dashboard -->Order_shipped or Order_unshipped
