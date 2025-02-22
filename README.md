@@ -117,11 +117,16 @@ Ecom-retry
 ## 2.User
 ### Register -->Login -->Update_user, Update_password or Update_info.
 
+
 ## 3.Product
 ### Searching product, Product pages, Add to cart.
 
+
 ## 4.Checkout
-### Check -->Billing_info -->Process_order -->Payment_success or Payment_failed
+### Checkout -->Billing_info -->Process_order -->Payment_success or Payment_failed
+
 
 ## 5.Admin Session
 ### Shipped_dashboard -->Order_shipped or Order_unshipped
+
+
