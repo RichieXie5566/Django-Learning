@@ -13,7 +13,7 @@ from django.db.models import Q
 from cart.cart import Cart #cart資料夾裡的cart.py裡面的Cart
 
 def home(request):
-    products = Product.objects.all()
+    products = Product.objects.all().order_by("id")
     return render(request, 'home.html', {'products':products })
 
 def about(request):
