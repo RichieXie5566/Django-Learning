@@ -163,14 +163,14 @@ AWS is cool but too expensive, need more time to create and learn.
 4.Make sure installing all the stuff in my requirements.txt
 
 5.You may see this on your screen which means deployed sucessfully
-<img src="https://imgur.com/y5293Kb.jpeg" width="500">
+<img src="https://imgur.com/y5293Kb.jpeg" width="800">
 
 6.touch .env(at ecom/ecom/)and put password in it. Make sure touch .gitignore if you want to upload
-<img src="https://imgur.com/G8guFd9.jpeg" width="500">
+<img src="https://imgur.com/G8guFd9.jpeg" width="800">
 
 7.Edit your settings.py with your variables
 
-<img src="https://imgur.com/noUPAnM.jpeg" width="500">
+<img src="https://imgur.com/noUPAnM.jpeg" width="800">
 
 ```python
 
@@ -190,11 +190,14 @@ If you're having issue like with port or host :
 go to railway -> architecture -> settings  -> networking
 There you will fing a combination of real host and port. I replaced them with those that I found in variables and it worked
 
+
 8.Install PostgreSQL 17, add the PostgreSQL bin directory to the Windows environment variable Path, and restart your computer
 
 9.python manage.py migrate
 
-10.
+10.Check your data
+<img src="https://imgur.com/tpbMJDd.jpeg" width="700">
+
 
 
 
