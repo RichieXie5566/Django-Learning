@@ -236,35 +236,27 @@ CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app'
 
 
 ## 3.Pages
-### Home, Product, cart, Category...
-Home
+
+### Home
 <img src="https://imgur.com/Hdy8sJQ.jpeg" width="700">
 
-
-register
+### register
 <img src="https://imgur.com/tKLqKWP.jpeg" width="700">
 
-
-login
+### login
 <img src="https://imgur.com/o9CyKa7.jpeg" width="700">
 
-
-product
+### product
 <img src="https://imgur.com/dEmMwZB.jpeg" width="700">
 
-
-category
+### category
 <img src="https://imgur.com/Le4Ncno.jpeg" width="700">
 
-
-search
+### search
 <img src="https://imgur.com/CK2ZebU.jpeg" width="700">
 
-
-cart
+### cart
 <img src="https://imgur.com/92XoXvz.jpeg" width="700">
-
-
 
 ## 5.Checkout
 ### Checkout -->Billing_info -->Process_order -->Payment_success or Payment_failed
