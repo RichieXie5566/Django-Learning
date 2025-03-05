@@ -127,6 +127,10 @@ DATABASES = {
     }
 }
 ```
+2.python manage.py migrate
+
+3.python manage.py runserver (Use another port if there's an error, for instance:8080)
+
 ### b.Use your own PostgreSQL
 1.Edit Settings.py
 ```python
