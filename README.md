@@ -275,10 +275,10 @@ CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app'
 
 ## 6.Admin Session:Shipped_dashboard
 ### Order_shipped
-<img src="https://imgur.com/ObGbblt.jpeg" width="700">
+<img src="https://imgur.com/5Ga1DgY.jpeg" width="700">
 
 ### Order_unshipped
-<img src="https://imgur.com/5Ga1DgY.jpeg" width="700">
+<img src="https://imgur.com/ObGbblt.jpeg" width="700">
 
 ## 7.Problems
 1.Credit Cards payments need to be functional
