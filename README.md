@@ -259,7 +259,18 @@ CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app'
 <img src="https://imgur.com/92XoXvz.jpeg" width="700">
 
 ## 5.Checkout
-### Checkout -->Billing_info -->Process_order -->Payment_success or Payment_failed
+
+### Checkout
+<img src="https://imgur.com/QEaOFgx.jpeg" width="700">
+
+### Billing_info
+<img src="https://imgur.com/aGLIRvF.jpeg" width="700">
+
+### Process_order
+<img src="https://imgur.com/eL2rGEA.jpeg" width="700">
+
+### Payment_success or Payment_failed
+<img src="https://imgur.com/N5iBR8x.jpeg" width="700">
 
 
 ## 6.Admin Session
@@ -273,3 +284,5 @@ CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app'
 3.Descriptions destroy product's interface
 
 4.Shipping, Unshipping need to be functional
+
+5.Make sure user's info being more specific
