@@ -152,16 +152,57 @@ DATABASES = {
 3.python manage.py runserver (Use another port if there's an error, for instance:8080)
 
 ### c.Use your own Railway
-1.Why I use Railway?
-It's cheap. $5 a month, you get this when you create your account.
-Maybe you want to use professional purpose. It's $20, also cheap.
-AWS is cool but too expensive, need more time to create.
+1.Why I use Railway?It's cheap. $5 a month, you get this when you create your account.
+Maybe you want to use professional version, and it's $20 also cheap.
+AWS is cool but too expensive, need more time to create and learn.
 
 2.Create your account and use free version to create New project
 
 3.Deploy PostgreSQL
 
 4.Make sure installing all the stuff in my requirements.txt.
+
+5.You may see this on your screen which means deployed sucessfully.
+<img src="https://imgur.com/y5293Kb" width="500">
+
+6.touch .env(at ecom/ecom/)and put password in it. Make sure touch .gitignore if you want to upload.
+<img src="https://imgur.com/G8guFd9" width="500">
+
+7.Edit your settings.py with your variables
+<img src="https://imgur.com/noUPAnM" width="500">
+```python
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "railway",
+        'USER': 'postgres',
+        'PASSWORD': os.environ['DB_PASSWORD'], # In your .env
+        'HOST': 'mainline.proxy.rlwy.net',
+        'PORT': '5432(default, or use yours.)',
+    }
+}
+```
+
+If you're having issue like with port or host : 
+go to railway -> architecture -> settings  -> networking
+There you will fing a combination of real host and port. I replaced them with those that I found in variables and it worked
+
+8.Install PostgreSQL 17, add the PostgreSQL bin directory to the Windows environment variable Path, and restart your computer.
+
+9.python manage.py migrate
+
+10.
+
+
+
+
+
+
+
+
+
+
 
 ## 3.Product
 ### Searching product, Product pages, Add to cart.
