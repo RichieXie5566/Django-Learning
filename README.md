@@ -199,12 +199,40 @@ There you will fing a combination of real host and port. I replaced them with th
 <img src="https://imgur.com/tpbMJDd.jpeg" width="700">
 
 
+11.Create yours products, admin(superuser), orders and migrate them
+
+12.python manage.py collectstatic
+
+13.Create your .ssh connecting to github and initializing repo
+
+$ git config --global user.name "Your Name"
+$ git config --global user.email "you@youraddress.com"  
+$ git config --global push.default matching
+$ git config --global alias.co checkout
+$ git init
+$ git add . 
+$ git commit -am "Initial commit"
+$ git remote add origin git@your repo link
+$ git branch -M main
+$ git push -u origin main
 
 
+14.New project deploy from github repo on Railway, chose your repo and deploy now
+
+15.Generate Domain and copy to settins.py
+```python
+
+ALLOWED_HOSTS = ['django-ecom-app-production-d8d0.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app']
 
 
+```
 
 
+16.$ git commit -am 'added allow hosts to connect railway'
+
+17.Create a new variables for your password and deploy it, git commit   
+<img src="https://imgur.com/ULJBvOO.jpeg" width="700">
 
 
 
