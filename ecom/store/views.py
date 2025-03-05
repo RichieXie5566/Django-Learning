@@ -129,7 +129,7 @@ def update_info(request):
         if form.is_valid() or shipping_form.is_valid(): # 驗證表單是否通過
             form.save() # 儲存更新後的用戶資料
             shipping_form.save()
-            messages.success(request,'成功修改宅配設定')
+            messages.success(request,'成功修改結帳設定')
             return redirect('home')
         
         # 如果表單驗證失敗，重新渲染表單並顯示錯誤訊息

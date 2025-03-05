@@ -235,17 +235,42 @@ CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app'
 <img src="https://imgur.com/ULJBvOO.jpeg" width="700">
 
 
+## 3.Pages
+### Home, Product, cart, Category...
+Home
+<img src="https://imgur.com/Hdy8sJQ.jpeg" width="700">
+
+register
+<img src="https://imgur.com/tKLqKWP.jpeg" width="700">
+
+login
+<img src="https://imgur.com/o9CyKa7.jpeg" width="700">
+
+product
+<img src="https://imgur.com/dEmMwZB.jpeg" width="700">
+
+category
+<img src="https://imgur.com/Le4Ncno.jpeg" width="700">
+
+search
+<img src="https://imgur.com/CK2ZebU.jpeg" width="700">
+
+cart
+<img src="https://imgur.com/92XoXvz.jpeg" width="700">
 
 
-## 3.Product
-### Searching product, Product pages, Add to cart.
-
-
-## 4.Checkout
+## 5.Checkout
 ### Checkout -->Billing_info -->Process_order -->Payment_success or Payment_failed
 
 
-## 5.Admin Session
+## 6.Admin Session
 ### Shipped_dashboard -->Order_shipped or Order_unshipped
 
+## 7.Problems
+1.Credit Cards payments need to be functional
 
+2.Double orders generate but it should be one
+
+3.Descriptions destroy product's interface
+
+4.Shipping, Unshipping need to be functional
