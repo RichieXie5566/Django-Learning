@@ -115,7 +115,7 @@ Ecom-retry
 ```
 
 ## 2.How to install?
-### a.localhost
+### a.Localhost
 1.Edit Settings.py
 ```python
 ALLOWED_HOSTS = []
@@ -127,7 +127,22 @@ DATABASES = {
     }
 }
 ```
+### b.Use your own PostgreSQL
+1.Edit Settings.py
+```python
+ALLOWED_HOSTS = []
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres(default, or use yours.)",
+        'USER': 'postgres(default, or use yours.)',
+        'PASSWORD': 'Your password',
+        'HOST': '127.0.0.1(default, or use yours.)',
+        'PORT': '5432(default, or use yours.)',
+    }
+}
+```
 2.python manage.py migrate
 
 3.python manage.py runserver (Use another port if there's an error, for instance:8080)
