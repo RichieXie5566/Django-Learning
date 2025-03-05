@@ -163,13 +163,13 @@ AWS is cool but too expensive, need more time to create and learn.
 4.Make sure installing all the stuff in my requirements.txt.
 
 5.You may see this on your screen which means deployed sucessfully.
-<img src="https://imgur.com/y5293Kb" width="500">
+<img src="https://imgur.com/y5293Kb.jpeg" width="500">
 
 6.touch .env(at ecom/ecom/)and put password in it. Make sure touch .gitignore if you want to upload.
-<img src="https://imgur.com/G8guFd9" width="500">
+<img src="https://imgur.com/G8guFd9.jpeg" width="500">
 
 7.Edit your settings.py with your variables
-<img src="https://imgur.com/noUPAnM" width="500">
+<img src="https://imgur.com/noUPAnM.jpeg" width="500">
 ```python
 
 DATABASES = {
