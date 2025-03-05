@@ -114,9 +114,23 @@ Ecom-retry
 
 ```
 
-## 2.User
-### Register -->Login -->Update_user, Update_password or Update_info.
+## 2.How to install?
+### a.localhost
+1.Edit Settings.py
+```python
+ALLOWED_HOSTS = []
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
+2.python manage.py migrate
+
+3.python manage.py runserver (Use another port if there's an error, for instance:8080)
 
 ## 3.Product
 ### Searching product, Product pages, Add to cart.
