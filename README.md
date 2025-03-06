@@ -12,7 +12,7 @@ Credit Cards payments are not yet functional.
 Click the button will create order on Railway or local PostgreSQL instance.
 
 ## 1.Element and tree
-### Using Python3.12 Django PostgreSQL Railway
+### Using Python3.12 Bootstrap5 Django PostgreSQL Railway
 ```
 Ecom-retry
 ├─ ecom                                      
