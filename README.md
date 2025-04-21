@@ -152,8 +152,9 @@ DATABASES = {
 3.python manage.py runserver (Use another port if there's an error, for instance:8080)
 
 ### c.Use your own Railway
-1.Why I use Railway?It's cheap. $5 a month, you get this when you create your account.
+1.Why I use Railway? It's based on docker, and get $5 for free when you create your account.
 Maybe you want to use professional version, and it's $20 also cheap.
+
 AWS is cool but too expensive, need more time to create and learn.
 
 2.Create your account and use free version to create New project
