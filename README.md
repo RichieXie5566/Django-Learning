@@ -291,3 +291,6 @@ CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app'
 4.Shipping, Unshipping need to be functional
 
 5.Make sure user's info being more specific
+
+25/5/13
+I try to use Ducker at localhost cause ngrok went bad.
