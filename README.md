@@ -292,5 +292,17 @@ CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app'
 
 5.Make sure user's info being more specific
 
+
+## New logs
 25/5/13
 I try to use Ducker at localhost cause ngrok went bad.
+
+25/5/14
+ngrok problems fixed:
+
+1.Add local env function in settings.
+2.Use waitress-serve first then follow ngrok step by step.
+
+Warning: Allow port through firewall is your priority.
+
+I am still deploying Ducker.

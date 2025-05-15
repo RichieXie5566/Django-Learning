@@ -19,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # 讀取環境變數
 load_dotenv()
 
+DB_PASSWORD_YO = os.environ.get('DB_PASSWORD_YO')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -29,8 +30,8 @@ SECRET_KEY = 'django-insecure-fucx-v3jt$^x^7=q&s_ng_e9$m6ko*koegndlmn0da+=c5wco5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-ecom-app-production-d8d0.up.railway.app', 'localhost']
-CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app']
+ALLOWED_HOSTS = ['django-ecom-app-production-d8d0.up.railway.app', 'localhost', '1f2a-114-37-127-130.ngrok-free.app', '127.0.0.1', '0.0.0.0']
+CSRF_TRUSTED_ORIGINS = ['https://django-ecom-app-production-d8d0.up.railway.app', 'https://1f2a-114-37-127-130.ngrok-free.app']
 
 
 # Application definition
@@ -154,3 +155,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # PayPal沙盒
 PAYPAL_TEST = True
 PAYPAL_RECEIVER_EMAIL = 'businesstest@codemy.com'
+
+# Django 日誌
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
