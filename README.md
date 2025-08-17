@@ -306,3 +306,6 @@ ngrok problems fixed:
 Warning: Allow port through firewall is your priority.
 
 I am still deploying Ducker.
+
+25/8/17
+I create a new domain from railway.
