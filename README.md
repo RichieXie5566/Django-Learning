@@ -1,6 +1,6 @@
 # My Django-Ecom-App retry
 
-Website link:https://django-ecom-app-production-d8d0.up.railway.app/
+Website link:https://django-learning-production-fe4a.up.railway.app
 
 I am working towards becoming a back-end engineer, so I started learning Python and using the Django framework to build an E-commerce website for study purpose.
 
